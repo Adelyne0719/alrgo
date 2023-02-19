@@ -17,6 +17,7 @@ class Trader():
         self.status = NEUTRAL
         self.signal = None
         self.df = None
+        self.now = None
         self.price = 0
 
     def candle_data(self, time_frame, req_limit):
@@ -58,9 +59,7 @@ class Trader():
         """
         실시간 가격 수신
         """
-        redundancy = None
-        frame_num = int(TIME_FRAME[:-1])
-        frame_text = TIME_FRAME[-1]
+
         exchange = ccxtpro.binance(config={
             'apiKey': API_KEY,
             'secret': API_SECRET,
@@ -71,7 +70,7 @@ class Trader():
         })
 
         while True:
-            now = datetime.now()
+            self.now = datetime.now()
             res_price = await exchange.watch_ticker(SYMBOL)
             res_orderbook = await exchange.watch_order_book(TICKER)
             top_bid = float(res_orderbook['bids'][0][1])
@@ -79,24 +78,8 @@ class Trader():
             time_stamp = datetime.fromtimestamp(int(res_price['timestamp']) / 1000).strftime('%Y-%m-%d %H:%M:%S')
             self.price = res_price['close']
             
-            if TIME_FRAME: # 시그널 확인 조건 체크
-                if frame_text == 'm':
-                    h_condition = True
-                    m_condition = True if int(str(now)[-12:-10]) % frame_num == 0 else False
-                elif frame_text == 'h':
-                    h_condition = True if int(str(now)[-15:-13]) % frame_num == 0 else False
-                    m_condition = True if int(str(now)[-12:-10]) == 0 else False
-
-            if redundancy == None: # 2번 요청하지 않기 위한 리던던시
-                if h_condition and m_condition and str(now)[-9:-7] == '00':
-                        print('00초다!!',now)
-                        self.df = trader.candle_data(TIME_FRAME, REQ_LIMIT)
-                        self.signal = self.signal_generator()
-                        redundancy = str(now)[:-7]
-                        print('git')
-            else:
-                if redundancy != str(now)[:-7]:
-                    redundancy = None
+            if str(self.now)[-9:-7] == '00':
+                self.signal = self.signal_generator()
 
             print(time_stamp, 'price:',self.price,'signal:', self.signal)
             if self.signal != None:
@@ -105,26 +88,44 @@ class Trader():
 
     def signal_generator(self):
 
+        frame_num = int(TIME_FRAME[:-1])
+        frame_text = TIME_FRAME[-1]
+        redundancy = None
+        signal = None
         try:
-            signal = None
-            candle_condition = self.df['Close'].iloc[-2] - self.df['Open'].iloc[-2]
-            if self.status == NEUTRAL:
-                if candle_condition < 0:
-                    if self.df['Close'].iloc[-2] + (abs(candle_condition) * CONDITION_RATE) <= self.df['Close'].iloc[-1] <= self.df['Open'].iloc[-2]:
-                        signal = LONG
-                elif candle_condition > 0:
-                    if self.df['Close'].iloc[-2] - (abs(candle_condition) * CONDITION_RATE) >= self.df['Close'].iloc[-1] >= self.df['Open'].iloc[-2]:
-                        signal = SHORT
+            if TIME_FRAME: # 시그널 확인 조건 체크
+                if frame_text == 'm':
+                    h_condition = True
+                    m_condition = True if int(str(self.now)[-12:-10]) % frame_num == 0 else False
+                elif frame_text == 'h':
+                    h_condition = True if int(str(self.now)[-15:-13]) % frame_num == 0 else False
+                    m_condition = True if int(str(self.now)[-12:-10]) == 0 else False
 
-            elif self.status == LONG: # 진입평균가 1% ATR 추가해야됨
-                if candle_condition < 0:
-                    if self.df['Close'].iloc[-2] + (abs(candle_condition) * CONDITION_RATE) <= self.df['Close'].iloc[-1] <= self.df['Open'].iloc[-2]:
-                        signal = LONG
+            if redundancy == None: # 2번 요청하지 않기 위한 리던던시
+                if h_condition and m_condition:
+                    self.df = trader.candle_data(TIME_FRAME, REQ_LIMIT)
+                    candle_condition = self.df['Close'].iloc[-2] - self.df['Open'].iloc[-2]
+                    if self.status == NEUTRAL:
+                        if candle_condition < 0:
+                            if self.df['Close'].iloc[-2] + (abs(candle_condition) * CONDITION_RATE) <= self.df['Close'].iloc[-1] <= self.df['Open'].iloc[-2]:
+                                signal = LONG
+                        elif candle_condition > 0:
+                            if self.df['Close'].iloc[-2] - (abs(candle_condition) * CONDITION_RATE) >= self.df['Close'].iloc[-1] >= self.df['Open'].iloc[-2]:
+                                signal = SHORT
 
-            elif self.status == SHORT:
-                if candle_condition > 0:
-                    if self.df['Close'].iloc[-2] - (abs(candle_condition) * CONDITION_RATE) >= self.df['Close'].iloc[-1] >= self.df['Open'].iloc[-2]:
-                        signal = SHORT
+                    elif self.status == LONG: # 진입평균가 1% ATR 추가해야됨
+                        if candle_condition < 0:
+                            if self.df['Close'].iloc[-2] + (abs(candle_condition) * CONDITION_RATE) <= self.df['Close'].iloc[-1] <= self.df['Open'].iloc[-2]:
+                                signal = LONG
+
+                    elif self.status == SHORT:
+                        if candle_condition > 0:
+                            if self.df['Close'].iloc[-2] - (abs(candle_condition) * CONDITION_RATE) >= self.df['Close'].iloc[-1] >= self.df['Open'].iloc[-2]:
+                                signal = SHORT
+                    redundancy = str(self.now)[:-7]
+                else:
+                    if redundancy != str(self.now)[:-7]:
+                        redundancy = None
 
             return signal
             
