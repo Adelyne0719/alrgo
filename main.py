@@ -162,6 +162,7 @@ class Trader():
             #실행중이라면
                 if self.general_orderlist == {}: #주문이 있는지 확인
                     """"""
+                    test = self.close_price
                     #주문이 없다면
                         # self.general_order(self.signal[0], 24700, 0.001,"test11") #G주문
                     #주문이 있다면 (겟뉴오더 클라이언트 오더아이디가 제너럴이 있는지 확인)
