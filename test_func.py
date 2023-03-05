@@ -10,6 +10,7 @@ class test():
          self.price = 24000
          self.balance = 0.0833
          self.min_qty = 0.001
+         self.decimal = 3
 
     def create_entry_list(self):
             
@@ -54,8 +55,8 @@ class test():
             else:
                 time.sleep(1)
     def tsts(self):
-        tt = 3
-        if 1<tt<5:
-            print('ok')
+        rest = 0.005
+        tt = []
+        print(len(tt))
 tes = test()
 s= tes.tsts()
