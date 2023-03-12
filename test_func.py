@@ -11,6 +11,7 @@ class test():
          self.balance = 0.0833
          self.min_qty = 0.001
          self.decimal = 3
+         self.signal = {'Signal':LONG}
 
     def create_entry_list(self):
             
@@ -55,8 +56,27 @@ class test():
             else:
                 time.sleep(1)
     def tsts(self):
-        rest = 0.005
-        tt = []
-        print(len(tt))
+        if self.check_signal(price=self.price,fomula=(4-2)*3):
+            print('true')
+        else:
+            print('false')
+
+    def check_signal(self,price,fomula):
+        s_price = price
+        s_fomula= fomula
+
+        if self.signal['Signal'] == LONG:
+            if s_price <= s_fomula:
+                result = True
+            else:
+                result = False
+        elif self.signal['Signal'] == SHORT:
+            if s_price >= s_fomula:
+                result = True
+            else:
+                result = False
+
+        return result
+    
 tes = test()
 s= tes.tsts()

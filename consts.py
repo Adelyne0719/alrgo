@@ -7,6 +7,7 @@ API_SECRET = os.getenv("BINANCE_SECRET_KEY")  # TODO 반드시 설정해주세�
 # TRADING
 SYMBOL = 'BTCUSDT'
 TICKER = 'BTC/USDT'
+REVERSE_SIGNAL = False #시그날을 반대로 생성
 TIME_FRAME = '1m'
 REQ_LIMIT = 100 # 기본적으로 20개
 LEVERAGE = 15 # 레버리지
