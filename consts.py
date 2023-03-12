@@ -22,8 +22,8 @@ MARKET = "MARKET"
 NEUTRAL = 'NEUTRAL'
 LONG = 'LONG'
 SHORT = 'SHORT'
-GENERAL_DIV = 4 #진입분할
-HEDGE_DIV = 4 #기본적으로 GDIV와 같음
+GENERAL_STG = 4 #진입분할
+HEDGE_STG = 4 #기본적으로 GDIV와 같음
 SCALE_RATE = 1
 MINIMUM_TRADE_RATE = 0.005
 DIVISION = 12 # Ex와 Dv 합쳐서
@@ -33,7 +33,7 @@ G_RATE_LIST = [2, 3, 6, 11]
 H_RATE_LIST = [4, 4, 4, 4]
 
 SAFE1_PER = 0.70
-SAFE2_PER = 0.90
+SAFE2_PER = 0.95
 
 #진입가 구하는 상수 (분할 수 바뀔때마다 해줘야됨.)
 CONST = 150

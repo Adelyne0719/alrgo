@@ -1,6 +1,7 @@
 import logging
 import traceback
 import time
+import ccxt
 from consts import *
 from datetime import datetime
 from datetime import timedelta
@@ -78,5 +79,17 @@ class test():
 
         return result
     
+    def check_liq(self):
+        exchange = ccxt.binance(config={
+        'apiKey': API_KEY,
+        'secret': API_SECRET,
+        'enableRateLimit': True,
+        'options': {
+            'defaultType': 'future'
+        }
+        })
+        positions = exchange.fetch_positions(symbols=[SYMBOL])
+        print(positions)
+    
 tes = test()
-s= tes.tsts()
+s= tes.check_liq()

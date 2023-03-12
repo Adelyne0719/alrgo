@@ -56,6 +56,10 @@ class Trader():
         self.h_avg_price = None
         self.g_total_qty = None
         self.h_total_qty = None
+        self.general_price = None
+        self.general_qty = None
+        self.hedge_price = None
+        self.hedge_qty = None
         self.g_prep = [] # dv 의 stg 를 5개로 나누눈 수량위해 만듦
         self.h_prep = []
         self.g_order_price = [] # prep의 체결을 가져옴
@@ -64,7 +68,6 @@ class Trader():
         self.h_order_qty = []
         self.g_history = {}
         self.h_history = {}
-        self.general_price = []
         self.hedge_list = []
         self.h_slippage = 0
         self.entry_order_check = True
@@ -101,6 +104,10 @@ class Trader():
         self.h_avg_price = None
         self.g_total_qty = None
         self.h_total_qty = None
+        self.general_price = None
+        self.general_qty = None
+        self.hedge_price = None
+        self.hedge_qty = None
         self.g_prep = []
         self.h_prep = []
         self.g_order_price = []
@@ -109,7 +116,6 @@ class Trader():
         self.h_order_qty = []
         self.g_history = {}
         self.h_history = {}
-        self.general_price = []
         self.hedge_list = []
         self.h_slippage = 0
         self.entry_order_check = True
@@ -272,7 +278,7 @@ class Trader():
                     result['Signal']
                     result['Close'] = self.price
                     result['Atr'] = result['Close']*GAP_PERCENT
-                    result['Mingap'] = (result['Close']*GAP_PERCENT if result['Close'] >= result['Atr'] else result['Atr'])/GENERAL_DIV
+                    result['Mingap'] = (result['Close']*GAP_PERCENT if result['Close'] >= result['Atr'] else result['Atr'])/GENERAL_STG
                 else:
                     if str(self.now)[-5:-3] != str(self.check_time) and self.check_time != None:
                         if self.redundancy == None: # 2번 요청하지 않기 위한 리던던시
@@ -292,7 +298,7 @@ class Trader():
                                     result = {}
                                     result['Close'] = self.df['Close'].iloc[-1]
                                     result['Atr'] = self.df['Atr'].iloc[-1]
-                                    result['Mingap'] = ((result['Close']*GAP_PERCENT) if result['Close']*GAP_PERCENT >= result['Atr'] else result['Atr'])/GENERAL_DIV
+                                    result['Mingap'] = ((result['Close']*GAP_PERCENT) if result['Close']*GAP_PERCENT >= result['Atr'] else result['Atr'])/GENERAL_STG
                                     candle_condition = self.df['Close'].iloc[-2] - self.df['Open'].iloc[-2]
                                     if self.status == NEUTRAL:
                                         if candle_condition < 0:
@@ -310,7 +316,7 @@ class Trader():
                                             result = None
                                     elif self.status == LONG: # 진입가 1% ATR 추가해야됨(완료)
                                         if candle_condition < 0:
-                                            if self.g_position['AEP'] - result['Mingap']*GENERAL_DIV >= result['Close']:
+                                            if self.g_position['AEP'] - result['Mingap']*GENERAL_STG >= result['Close']:
                                                 if self.df['Close'].iloc[-2] + (abs(candle_condition) * CONDITION_RATE) <= self.df['Close'].iloc[-1] <= self.df['Open'].iloc[-2]:
                                                     if self.pre_h == None:
                                                         result['Signal'] = LONG
@@ -327,7 +333,7 @@ class Trader():
                                             result = None
                                     elif self.status == SHORT:
                                         if candle_condition > 0:
-                                            if self.g_position['AEP'] + result['Mingap']*GENERAL_DIV <= result['Close']:
+                                            if self.g_position['AEP'] + result['Mingap']*GENERAL_STG <= result['Close']:
                                                 if self.df['Close'].iloc[-2] - (abs(candle_condition) * CONDITION_RATE) >= self.df['Close'].iloc[-1] >= self.df['Open'].iloc[-2]:
                                                     if self.pre_h == None:
                                                         result['Signal'] = SHORT
@@ -351,13 +357,13 @@ class Trader():
                                                 result['Signal'] = LONG
                                         else:
                                             pass
-
-                                    if self.status == LONG: # 진행중일때 반대쪽 시그널 무시
-                                        if self.signal['Signal'] == SHORT:
-                                            result = None
-                                    elif self.status == SHORT:
-                                        if self.signal['Signal'] == LONG:
-                                            result = None
+                                    if result != None:
+                                        if self.status == LONG: # 진행중일때 반대쪽 시그널 무시
+                                            if result['Signal'] == SHORT:
+                                                result = None
+                                        elif self.status == SHORT:
+                                            if result['Signal'] == LONG:
+                                                result = None
 
 
                             self.redundancy = str(self.now)
@@ -493,10 +499,24 @@ class Trader():
             self.price = res_price['close']
             self.signal = self.signal_generator()
             
-            if self.signal != None and self.general_price != []:
-                print(time_stamp, 'status:', self.status, 'price:', self.price, 'signal:', self.signal['Signal'], 'div:', self.division, 'stg:', self.stg , 'stg_price:', self.general_price[self.stg])
+            if self.signal != None and self.general_price != None:
+                print(time_stamp,
+                      'price:', self.price,
+                      'status:', self.status,
+                      'signal:', self.signal['Signal'],
+                      'div:', self.division,
+                      'g_position:', self.g_position,
+                      'stg:', self.stg,
+                      'stg_price:', self.general_price[self.stg],
+                      'pre_h:', self.pre_h)
             else:
-                print(time_stamp, 'status:', self.status, 'price:', self.price, 'signal:', self.signal, 'div:', self.division)
+                print(time_stamp,
+                      'price:', self.price,
+                      'status:', self.status,
+                      'signal:', self.signal,
+                      'div:', self.division,
+                      'g_position:', self.g_position,
+                      'pre_h:', self.pre_h)
             
             self.check_time = str(self.now)[-5:-3]
 
@@ -560,7 +580,7 @@ class Trader():
                 result[0] = gpc_signal['Close']
             else:
                 if signal['Signal'] == LONG:
-                    for i in range(GENERAL_DIV+1):
+                    for i in range(GENERAL_STG+1):
                         if i == 0:
                             result['Signal'] = gpc_signal['Close']
                         else:
@@ -568,7 +588,7 @@ class Trader():
                             result[i-1] = float(format(p,'.{}f'.format(self.spread)))
 
                 elif signal['Signal'] == SHORT:
-                    for i in range(GENERAL_DIV+1):
+                    for i in range(GENERAL_STG+1):
                         if i == 0:
                             result['Signal'] = gpc_signal['Close']
                         else:
@@ -590,7 +610,7 @@ class Trader():
             if self.division == 0:
                 result[0] = gqc_qty
             else:
-                for i in range(GENERAL_DIV):
+                for i in range(GENERAL_STG):
                     result[i] = self.unit*G_RATE_LIST[i]
                 rest = float(format(gqc_qty-sum(result.values()),'.{}f'.format(self.decimal)))
                 if rest > 0:
@@ -619,7 +639,7 @@ class Trader():
             if self.division == 0:
                 result[0] = 0
             else:
-                for i in range(HEDGE_DIV):
+                for i in range(HEDGE_STG):
                     if i == 0:
                         if self.pre_h != None:
                             result[i] = (H_RATE_LIST[i]*self.unit) - self.pre_h['Qty']
@@ -652,7 +672,9 @@ class Trader():
                 await asyncio.sleep(0.01)
                 if self.pre_h != None:
                     break
-            slical = float(format((self.pre_h['Price'] - self.signal['Close']),'.{}f'.format(self.spread)))
+            slical = 0
+            if self.signal != None:
+                slical = float(format((self.pre_h['Price'] - self.signal['Close']),'.{}f'.format(self.spread)))
             self.h_slippage += slical
             self.hedge_qty[0] = qty
             print(signal,'order_price:',price,'avg_price:',self.pre_h['Price'],'slippage:',slical,'qty:',qty)
@@ -681,6 +703,13 @@ class Trader():
                     pnl= self.pre_h['Price'] - self.pre_h_exit['Exit_price']
                     self.spare_pnl += pnl
                     self.pre_h_exit = None
+                    self.hedge_qty[0] = float(format(self.hedge_qty[0] + qty,'.{}f'.format(self.decimal)))
+                    self.pre_h = None
+                elif self.status == SHORT:
+                    pnl= self.pre_h_exit['Exit_price'] - self.pre_h['Price']
+                    self.spare_pnl += pnl
+                    self.pre_h_exit = None
+                    self.hedge_qty[0] = float(format(self.hedge_qty[0] + qty,'.{}f'.format(self.decimal)))
                     self.pre_h = None
                 print('order_price:',self.price,'avg_price:',self.pre_h_exit['Exit_price'],'qty:',qty)
         except Exception as e:
@@ -831,25 +860,62 @@ class Trader():
         try:
             logging.info('now history avg price')
             if self.division == 0:
-                self.g_history = {}
-                self.h_history = {}
-                self.g_position['AEP'] = self.g_history['price']
-                self.g_position['QTY'] = self.g_history['qty']
+                self.g_position = {}
+                self.h_position = {}
+                self.g_position['AEP'] = self.g_history[0]['price']
+                self.g_position['QTY'] = self.g_history[0]['qty']
             else:
-                self.g_position['AEP'] = (self.g_position['AEP']*self.g_position['QTY'] + self.g_history['price']*self.g_history['qty']) / (self.g_position['QTY'] + self.g_history['qty'])
+                g_avg = 0
+                g_qty = 0
+                h_avg = 0
+                h_qty = 0
+                for g in range(len(self.g_history)):
+                    g_avg += self.g_history[g]['price']*self.g_history[g]['qty']
+                    g_qty += self.g_history[g]['qty']
+                for h in range(len(self.h_history)):
+                    h_avg += self.h_history[h]['price']*self.h_history[h]['qty']
+                    h_qty += self.h_history[h]['qty']
+                gavg = g_avg/g_qty
+                havg = h_avg/h_qty
+                self.g_position['AEP'] = (self.g_position['AEP']*self.g_position['QTY'] + gavg*g_qty) / (self.g_position['QTY'] + g_qty)
                 self.g_position['QTY'] = self.g_history['qty'] + self.g_history['qty']
-                self.h_position['AEP'] = (self.h_position['AEP']*self.h_position['QTY'] + self.h_history['price']*self.h_history['qty']) / (self.h_position['QTY'] + self.h_history['qty'])
+                self.h_position['AEP'] = (self.h_position['AEP']*self.h_position['QTY'] + havg*h_qty) / (self.h_position['QTY'] + h_qty)
                 self.h_position['QTY'] = self.h_history['qty'] + self.h_history['qty']
 
-            logging.info(self.g_avg_price)
-            logging.info(self.h_avg_price)
+            logging.info(self.g_position)
+            logging.info(self.h_position)
         except Exception as e:
             logging.error(traceback.format_exc())
 
     #엔트리 슬리피지 계산
     def entry_slippage(self):
-        if self.division > 0:
-            self.h_slippage += self.g_history[self.stg]['price'] - self.h_history[self.stg]['price']
+        self.h_history[self.stg]['slippage'] = float(format(self.g_history[self.stg]['price'] - self.h_history[self.stg]['price'],'.{}f'.format(self.spread)))
+        self.h_slippage += self.h_history[self.stg]
+
+    def get_liquidation_percent(self):
+        
+        try:
+            logging.info('get_liquidation_percent')
+            exchange = ccxt.binance(config={
+            'apiKey': API_KEY,
+            'secret': API_SECRET,
+            'enableRateLimit': True,
+            'options': {
+                'defaultType': 'future'
+            }
+            })
+            positions = exchange.fetch_positions(symbols=[SYMBOL])
+
+            if self.signal['Signal'] == LONG:
+                liquidation = float(positions[1]['info']['liquidationPrice'])
+            elif self.signal['Signal'] == SHORT:
+                liquidation = float(positions[2]['info']['liquidationPrice'])
+
+            self.liquidation_per = (liquidation - self.g_position['AEP']) / self.g_position['AEP']
+            logging.info(self.liquidation_per)
+        except Exception as e:
+            logging.error(traceback.format_exc())
+
 
     #진입 매니저
     async def entry_manager(self):
@@ -870,10 +936,13 @@ class Trader():
                     pass
                     """전부다사"""
                 else:
-                    if self.pre_h == None:
+                    if self.pre_h == None: #시그널이 없을때도 진입해야되기 때문에 여기에.
                         if self.division != None:
                             if self.division > 0:
-                                await self.pre_h_order(signal=self.status, qty=self.entry_list[self.division])
+                                if self.general_qty == None:
+                                    self.general_qty = self.general_qty_creator(signal=self.status, qty=self.entry_list[self.division])
+                                    self.hedge_qty = self.hedge_qty_creator()
+                                await self.pre_h_order(signal=self.status, qty=self.hedge_qty[0], price=price)
                     if self.signal != None: #시그널이 생성되어있다면
                         if self.signal_time == None:
                             cur_time = datetime.now()
@@ -903,15 +972,15 @@ class Trader():
                                         if self.detail_count < self.entry_order_count:
                                             await self.entry_order(signal=self.signal['Signal'], g_qty=self.g_prep[self.detail_count], h_qty=0)#G1 H1 주문하는 함수
                                             if self.entry_order_check == True:
-                                                self.entry_avg_price()
                                                 self.detail_count += 1
                                                 self.entry_order_check = False
                                         elif self.detail_count == self.entry_order_count: #5번째 주문까지 됐는지 확인 후 stg 올리는것으로 변경
                                             self.history_creator()
-                                            self.entry_slippage()
+                                            self.position_update()
+                                            self.get_liquidation_percent() #최초에 1회만
                                             self.status = self.signal['Signal']
-                                            self.entry_reset()
                                             self.division += 1
+                                            self.entry_reset()
                                             # G1 이 전부 체결 됐으면 liquidation price 확인해서 self.safe_per 입력해줘야함
                                             print('첫 gh 진입 완료 stg1 추가')
 
@@ -919,9 +988,10 @@ class Trader():
                                 if self.stg == None: #stg를 확인해서 None인걸 확인한다면
                                     self.stg = 0 #최초인 0을 입력해주고
                                     self.general_price = self.general_price_creator(signal=self.signal)#진입가격표를 만든다.
-                                    self.general_qty = self.general_qty_creator(signal=self.signal, qty=self.entry_list[self.division])
-                                    self.hedge_qty = self.hedge_qty_creator()
-                                    print('진입준비완료1')
+                                    if self.general_qty == {}:
+                                        self.general_qty = self.general_qty_creator(signal=self.signal, qty=self.entry_list[self.division])
+                                        self.hedge_qty = self.hedge_qty_creator()
+                                    print('진입준비완료3')
                                 if self.stg == 0: #None이 아닐경우 0인지 확인해서
                                     if self.pre_h == None: # 0이라면 pre_h 주문이 있는지 확인하고 없다면 주문해줌.
                                         await self.pre_h_order(signal=self.signal['Signal'],price=price,qty=self.hedge_qty[0])
@@ -929,14 +999,13 @@ class Trader():
                                     else: #pre h가 있다면
                                         if len(self.g_history) == self.stg : # pre_h 주문이 있다면 완료된 g주문이 없는지확인하고 없다면
                                             if self.check_signal(price=price, fomula=((self.general_price[self.stg] - self.h_slippage) if self.signal['Signal'] == LONG else (self.general_price[self.stg] + self.h_slippage))): #딕셔너리기 때문에 값그대로 넣어야 0이 선택됨
-                                                if self.g_prep == []:
+                                                if self.g_prep == []: #최초 인경우 gprep 만들어주고 카운트 0 넣어줌
                                                     self.g_prep = self.entry_preparation(qty=self.general_qty[self.stg])
                                                     self.h_prep = self.entry_preparation(qty=self.hedge_qty[self.stg])
                                                     self.detail_count = 0
                                                 if self.detail_count < self.entry_order_count:
                                                     await self.entry_order(signal=self.signal['Signal'], g_qty=self.g_prep[self.detail_count], h_qty=self.h_prep[self.detail_count])#G1 H1 주문하는 함수
                                                     if self.entry_order_check == True:
-                                                        self.entry_avg_price()
                                                         self.detail_count += 1
                                                         self.entry_order_check = False
                                                 elif self.detail_count == self.entry_order_count-1: #5번째 주문까지 됐는지 확인 후 stg 올리는것으로 변경
@@ -958,75 +1027,38 @@ class Trader():
                                                         print('25분체결안됨 취소')
                                                         #초기화 함수 시그널 취소
                                                 #5개봉동안 g1함수가 발동되지 않는다면 pre_h가 수익중이면 없애면서 종료 손실중이면 리미트주문넣고종료
-
-                                elif 0 < self.stg < GENERAL_DIV: #stg 가 0 보다 클경우
-                                    if self.stg == None: #stg를 확인해서 None인걸 확인한다면
-                                        self.stg = 0 #최초인 0을 입력해주고
-                                        self.general_price = self.general_price_creator(signal=self.signal)#진입가격표를 만든다.
-                                        self.general_qty = self.general_qty_creator(signal=self.signal, qty=self.entry_list[self.division])
-                                        self.hedge_qty = self.hedge_qty_creator()
-                                        print('진입준비완료3')
-                                    if self.stg == 0: #None이 아닐경우 0인지 확인해서
-                                        if len(self.g_history) == self.stg : #g주문이 없는지확인하고 없다면
-                                            if self.g_prep == []: #나눠서 주문함
+                                elif 0 < self.stg < GENERAL_STG: #stg 가 0 보다 클경우
+                                    if len(self.g_history) == self.stg : # 완료된 g주문이 없는지확인하고 없다면
+                                        if self.check_signal(price=price, fomula=((self.general_price[self.stg] - self.h_slippage) if self.signal['Signal'] == LONG else (self.general_price[self.stg] + self.h_slippage))): #딕셔너리기 때문에 값그대로 넣어야 0이 선택됨
+                                            if self.g_prep == []: #최초 인경우 gprep 만들어주고 카운트 0 넣어줌
                                                 self.g_prep = self.entry_preparation(qty=self.general_qty[self.stg])
+                                                self.h_prep = self.entry_preparation(qty=self.hedge_qty[self.stg])
                                                 self.detail_count = 0
                                             if self.detail_count < self.entry_order_count:
-                                                await self.entry_order(signal=self.signal['Signal'], g_qty=self.g_prep[self.detail_count], h_qty=0)#G1 H1 주문하는 함수
+                                                await self.entry_order(signal=self.signal['Signal'], g_qty=self.g_prep[self.detail_count], h_qty=self.h_prep[self.detail_count])#G1 H1 주문하는 함수
                                                 if self.entry_order_check == True:
-                                                    self.entry_avg_price()
                                                     self.detail_count += 1
                                                     self.entry_order_check = False
-                                            elif self.detail_count == self.entry_order_count: #5번째 주문까지 됐는지 확인 후 stg 올리는것으로 변경
+                                            elif self.detail_count == self.entry_order_count-1: #5번째 주문까지 됐는지 확인 후 stg 올리는것으로 변경
                                                 self.history_creator()
                                                 self.entry_slippage()
-                                                self.status = self.signal['Signal']
-                                                self.entry_reset()
-                                                self.division += 1
+                                                self.detail_count = None
+                                                self.g_prep = []
+                                                self.h_prep = []
+                                                self.stg += 1
                                                 # G1 이 전부 체결 됐으면 liquidation price 확인해서 self.safe_per 입력해줘야함
                                                 print('첫 gh 진입 완료 stg1 추가')
-                                            else:
-                                                if self.g_history == {}:
-                                                    cur_time = datetime.now()
-                                                    if cur_time > self.signal_time:
-                                                        self.entry_reset()
-                                                        if self.division == 0:
-                                                            self.division = None
-                                                        print('25분체결안됨 취소')
-                                                        #초기화 함수 시그널 취소
-                                                #5개봉동안 g1함수가 발동되지 않는다면 pre_h가 수익중이면 없애면서 종료 손실중이면 리미트주문넣고종료
-                                    # if self.check_signal(price=price, fomula=((self.general_price[self.stg+1] - self.h_slippage) if self.signal('Signal') == LONG else (self.general_price[self.stg+1] + self.h_slippage))):
-                                    #     await self.entry_order(self, signal=self.signal['Signal'], g_qty=self.general_qty[self.stg], h_qty=self.hedge_qty[self.stg])
-                                    #     self.stg += 1
-                                    #     print('gh 진입 완료 stg1 추가')
-                                
-                                elif self.stg == GENERAL_DIV:
-                                    if self.check_signal(price=price, fomula=((self.general_price[self.stg+1] - self.h_slippage) if self.signal('Signal') == LONG else (self.general_price[self.stg+1] + self.h_slippage))):
-                                        await self.entry_order(self, signal=self.signal['Signal'], g_qty=self.general_qty[self.stg], h_qty=self.hedge_qty[self.stg])
-                                        if self.status == NEUTRAL:
-                                            self.status = self.signal['Signal']
-                                            self.position_update()
-                                            self.division += 1
-                                            self.entry_reset()
-                                            print('마지막gh진입완료 시그널종료')
+                                elif self.stg == GENERAL_STG: # 마지막 주문까지 모두 완료된경우
+                                    self.position_update()
+                                    self.pre_h = None # 정상적으로 dv에 편입된경우임
+                                    self.division += 1
+                                    self.entry_reset()
+                                    print('마지막gh진입완료 시그널종료')
 
-                                elif 0 < self.stg < GENERAL_DIV: #stg 가 0 보다 클경우
-                                    if self.check_signal(price=price, fomula=((self.general_price[self.stg+1] - self.h_slippage) if self.signal('Signal') == LONG else (self.general_price[self.stg+1] + self.h_slippage))):
-                                        await self.entry_order(self, signal=self.signal['Signal'], g_qty=self.general_qty[self.stg], h_qty=self.hedge_qty[self.stg])
-                                        self.stg += 1
-                                        print('gh 진입 완료 stg1 추가')
-                                
-                                elif self.stg == GENERAL_DIV:
-                                    if self.check_signal(price=price, fomula=((self.general_price[self.stg+1] - self.h_slippage) if self.signal('Signal') == LONG else (self.general_price[self.stg+1] + self.h_slippage))):
-                                        await self.entry_order(self, signal=self.signal['Signal'], g_qty=self.general_qty[self.stg], h_qty=self.hedge_qty[self.stg])
-                                        if self.status == NEUTRAL:
-                                            self.status = self.signal['Signal']
-                                            self.division += 1
-                                            self.entry_reset()
-                                            print('마지막gh진입완료 시그널종료')
-
+                            elif self.division == DIVISION:
+                                pass #나중에 마지노선 터지는거 넣어야됨
                     else:
-                        pass
+                        pass #시그널이 없을때 그냥 패스하는중
 
 
         except Exception as e:
@@ -1046,13 +1078,13 @@ class Trader():
                 result = False
             else:
                 if safe1 != None and self.division != 0:
-                    safe1_per = self.liquidation_per*SAFE1_PER
+                    safe1_per = 1 + self.liquidation_per*SAFE1_PER
                     price = price
                     if self.status == LONG:
                         if price <= self.g_position['AEP'] * safe1_per:
                             result = True
                     elif self.status == SHORT:
-                        if price >= self.g_position['AEP'] * safe2_per:
+                        if price >= self.g_position['AEP'] * safe1_per:
                             result = True
                     else:
                         result = False
@@ -1060,7 +1092,7 @@ class Trader():
                     result = False
 
                 if safe2 != None and self.division != 0:
-                    safe2_per = self.liquidation_per*SAFE2_PER
+                    safe2_per = 1 + self.liquidation_per*SAFE2_PER
                     price = price
                     if self.status == LONG:
                         if price <= self.g_position['AEP'] * safe2_per:
