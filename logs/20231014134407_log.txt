@@ -1,0 +1,48 @@
+2023-10-14 13:44:07,697 - INFO - init_data starts
+2023-10-14 13:44:01,027 - INFO - set_leverage starts
+2023-10-14 13:44:01,259 - INFO - {'symbol': 'BTCUSDT', 'leverage': 15, 'maxNotionalValue': '20000000'}
+2023-10-14 13:44:01,451 - INFO - set_margin_type starts
+2023-10-14 13:44:01,453 - INFO - margin_type is checked
+2023-10-14 13:44:01,649 - INFO - get_position
+2023-10-14 13:44:01,724 - INFO - None
+2023-10-14 13:44:01,906 - INFO - get_balance
+2023-10-14 13:44:01,962 - INFO - 14500
+2023-10-14 13:44:02,148 - INFO - get_minimum_order_qty
+2023-10-14 13:44:02,270 - INFO - 0.001
+2023-10-14 13:44:02,466 - INFO - needed balance
+2023-10-14 13:44:02,513 - INFO - 12431.3574
+2023-10-14 13:44:02,697 - INFO - check spread
+2023-10-14 13:44:02,742 - INFO - 1
+2023-10-14 14:20:01,116 - INFO - @@@2023-10-14 14:20:00시그널발생:{'Close': 26913.9, 'Atr': 13.399, 'Mingap': 20.185, 'Signal': 'SHORT'}@@@
+2023-10-14 14:20:01,349 - INFO - create_entry_list
+2023-10-14 14:20:01,350 - INFO - {0: 0.005, 1: 0.025, 2: 0.038, 3: 0.057, 4: 0.085, 5: 0.141, 6: 0.218, 7: 0.338, 8: 0.572, 9: 0.915, 10: 1.464, 11: 2.538}
+2023-10-14 14:20:01,351 - INFO - create general price
+2023-10-14 14:20:01,351 - INFO - {'Signal': 26913.9, 0: 26913.9}
+2023-10-14 14:20:01,352 - INFO - create general qty
+2023-10-14 14:20:01,352 - INFO - {0: 0.005}
+2023-10-14 14:20:01,353 - INFO - create hedge qty
+2023-10-14 14:20:01,353 - INFO - {0: 0}
+2023-10-14 14:20:01,393 - INFO - g_prep
+2023-10-14 14:20:01,394 - INFO - [0.001, 0.001, 0.001, 0.001, 0.001]
+2023-10-14 14:20:01,606 - INFO - entry_g(0)
+2023-10-14 14:20:01,663 - INFO - time: 2023-10-14 14:20:01 symbol: BTCUSDT side: SHORT price: 26913.80000 size: 0.001 type: MARKET / entry_g status: FILLED division: 0 -0 g_count: 0
+2023-10-14 14:20:01,759 - INFO - entry_g(0)주문결과 order_price:26913.9, order_qty:0.001
+2023-10-14 14:20:02,009 - INFO - entry_g(1)
+2023-10-14 14:20:02,064 - INFO - time: 2023-10-14 14:20:02 symbol: BTCUSDT side: SHORT price: 26913.80000 size: 0.001 type: MARKET / entry_g status: FILLED division: 0 -0 g_count: 1
+2023-10-14 14:20:02,174 - INFO - entry_g(1)주문결과 order_price:26913.9, order_qty:0.001
+2023-10-14 14:20:02,417 - INFO - entry_g(2)
+2023-10-14 14:20:02,476 - INFO - time: 2023-10-14 14:20:02 symbol: BTCUSDT side: SHORT price: 26913.80000 size: 0.001 type: MARKET / entry_g status: FILLED division: 0 -0 g_count: 2
+2023-10-14 14:20:02,579 - INFO - entry_g(2)주문결과 order_price:26913.9, order_qty:0.001
+2023-10-14 14:20:02,808 - INFO - entry_g(3)
+2023-10-14 14:20:02,868 - INFO - time: 2023-10-14 14:20:02 symbol: BTCUSDT side: SHORT price: 26913.80000 size: 0.001 type: MARKET / entry_g status: FILLED division: 0 -0 g_count: 3
+2023-10-14 14:20:02,971 - INFO - entry_g(3)주문결과 order_price:26913.9, order_qty:0.001
+2023-10-14 14:20:03,206 - INFO - entry_g(4)
+2023-10-14 14:20:03,260 - INFO - time: 2023-10-14 14:20:03 symbol: BTCUSDT side: SHORT price: 26913.80000 size: 0.001 type: MARKET / entry_g status: FILLED division: 0 -0 g_count: 4
+2023-10-14 14:20:03,349 - INFO - entry_g(4)주문결과 order_price:26913.9, order_qty:0.001
+2023-10-14 14:20:03,395 - ERROR - Traceback (most recent call last):
+  File "e:\Programing\Divelopment\alrgo\trade.py", line 1294, in entry_manager
+    self.history_creator()
+  File "e:\Programing\Divelopment\alrgo\trade.py", line 1062, in history_creator
+    g_price = float(format(g_cal/g_qty,'.{}f'.format(self.spread)))
+ZeroDivisionError: float division by zero
+

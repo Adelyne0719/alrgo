@@ -1,0 +1,15 @@
+2023-10-24 03:26:51,893 - INFO - init_data starts
+2023-10-24 03:26:53,790 - INFO - set_leverage starts
+2023-10-24 03:26:54,330 - INFO - {'symbol': 'BTCUSDT', 'leverage': 15, 'maxNotionalValue': '20000000'}
+2023-10-24 03:26:54,824 - INFO - set_margin_type starts
+2023-10-24 03:26:54,824 - INFO - margin_type is checked
+2023-10-24 03:26:55,293 - INFO - get_position
+2023-10-24 03:26:55,348 - INFO - None
+2023-10-24 03:26:55,819 - INFO - get_balance
+2023-10-24 03:26:55,884 - INFO - 14500
+2023-10-24 03:26:56,482 - INFO - get_minimum_order_qty
+2023-10-24 03:26:56,581 - INFO - 0.001
+2023-10-24 03:26:57,080 - INFO - needed balance
+2023-10-24 03:26:57,125 - INFO - 14312.7600
+2023-10-24 03:26:57,627 - INFO - check spread
+2023-10-24 03:26:57,673 - INFO - 1

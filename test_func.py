@@ -91,5 +91,10 @@ class test():
         positions = exchange.fetch_positions(symbols=[SYMBOL])
         print(positions)
     
+    def ttest(self):
+        ss = 0.023
+        p = ss//0.004
+        print(p)
+    
 tes = test()
-s= tes.check_liq()
+s= tes.ttest()

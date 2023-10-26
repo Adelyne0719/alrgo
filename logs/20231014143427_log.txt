@@ -1,0 +1,47 @@
+2023-10-14 14:34:27,234 - INFO - init_data starts
+2023-10-14 14:34:27,446 - INFO - set_leverage starts
+2023-10-14 14:34:27,711 - INFO - {'symbol': 'BTCUSDT', 'leverage': 15, 'maxNotionalValue': '20000000'}
+2023-10-14 14:34:27,896 - INFO - set_margin_type starts
+2023-10-14 14:34:27,897 - INFO - margin_type is checked
+2023-10-14 14:34:28,080 - INFO - get_position
+2023-10-14 14:34:28,142 - INFO - None
+2023-10-14 14:34:28,323 - INFO - get_balance
+2023-10-14 14:34:28,396 - INFO - 14500
+2023-10-14 14:34:28,610 - INFO - get_minimum_order_qty
+2023-10-14 14:34:28,708 - INFO - 0.001
+2023-10-14 14:34:28,887 - INFO - needed balance
+2023-10-14 14:34:28,933 - INFO - 12439.2576
+2023-10-14 14:34:29,112 - INFO - check spread
+2023-10-14 14:34:29,160 - INFO - 1
+2023-10-14 15:00:02,243 - INFO - @@@2023-10-14 15:00:01시그널발생:{'Close': 26874.2, 'Atr': 12.775, 'Mingap': 20.156, 'Signal': 'LONG'}@@@
+2023-10-14 15:00:02,245 - INFO - create_entry_list
+2023-10-14 15:00:02,245 - INFO - {0: 0.005, 1: 0.025, 2: 0.038, 3: 0.057, 4: 0.085, 5: 0.141, 6: 0.218, 7: 0.338, 8: 0.572, 9: 0.915, 10: 1.464, 11: 2.538}
+2023-10-14 15:00:02,246 - INFO - create general price
+2023-10-14 15:00:02,246 - INFO - {'Signal': 26874.2, 0: 26874.2}
+2023-10-14 15:00:02,246 - INFO - create general qty
+2023-10-14 15:00:02,247 - INFO - {0: 0.005}
+2023-10-14 15:00:02,247 - INFO - create hedge qty
+2023-10-14 15:00:02,247 - INFO - {0: 0}
+2023-10-14 15:00:02,306 - INFO - g_prep
+2023-10-14 15:00:02,306 - INFO - [0.001, 0.001, 0.001, 0.001, 0.001]
+2023-10-14 15:00:02,472 - INFO - entry_g(0)
+2023-10-14 15:00:02,526 - INFO - time: 2023-10-14 15:00:02 symbol: BTCUSDT side: LONG price: 26874.20000 size: 0.001 type: MARKET / entry_g status: FILLED division: 0 -0 g_count: 0
+2023-10-14 15:00:02,866 - INFO - entry_g(1)
+2023-10-14 15:00:02,917 - INFO - time: 2023-10-14 15:00:02 symbol: BTCUSDT side: LONG price: 26874.20000 size: 0.001 type: MARKET / entry_g status: FILLED division: 0 -0 g_count: 1
+2023-10-14 15:00:03,247 - INFO - entry_g(2)
+2023-10-14 15:00:03,299 - INFO - time: 2023-10-14 15:00:03 symbol: BTCUSDT side: LONG price: 26874.20000 size: 0.001 type: MARKET / entry_g status: FILLED division: 0 -0 g_count: 2
+2023-10-14 15:00:03,642 - INFO - entry_g(3)
+2023-10-14 15:00:03,693 - INFO - time: 2023-10-14 15:00:03 symbol: BTCUSDT side: LONG price: 26874.20000 size: 0.001 type: MARKET / entry_g status: FILLED division: 0 -0 g_count: 3
+2023-10-14 15:00:04,038 - INFO - entry_g(4)
+2023-10-14 15:00:04,094 - INFO - time: 2023-10-14 15:00:04 symbol: BTCUSDT side: LONG price: 26874.20000 size: 0.001 type: MARKET / entry_g status: FILLED division: 0 -0 g_count: 4
+2023-10-14 15:00:04,247 - INFO - now history avg price
+2023-10-14 15:00:04,248 - INFO - Dv:0, g_position:{'AEP': 26874.2, 'QTY': 0.005}
+2023-10-14 15:00:04,249 - INFO - Dv:0, h_position:{}
+2023-10-14 15:00:04,249 - INFO - get_liquidation_percent
+2023-10-14 15:00:05,570 - INFO - -0.06291834326454378
+2023-10-14 15:00:05,583 - INFO - -----첫 gh 진입완료 dv1 추가-----
+2023-10-14 15:00:05,644 - INFO - create general qty
+2023-10-14 15:00:05,645 - INFO - {0: 0.002, 1: 0.003, 2: 0.007, 3: 0.013}
+2023-10-14 15:00:05,645 - INFO - create hedge qty
+2023-10-14 15:00:05,646 - INFO - {0: 0.006, 1: 0.006, 2: 0.006, 3: 0.007}
+2023-10-14 15:00:05,846 - INFO - pre_h_order

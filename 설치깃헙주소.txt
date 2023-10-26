@@ -1,0 +1,2 @@
+binance.um_futures    https://github.com/binance/binance-futures-connector-python/tree/main
+python-binance(async,client)    https://github.com/sammchardy/python-binance/tree/master

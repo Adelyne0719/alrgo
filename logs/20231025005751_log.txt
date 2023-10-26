@@ -1,0 +1,25 @@
+2023-10-25 00:57:52,343 - INFO - init_data starts
+2023-10-25 00:57:53,059 - INFO - set_leverage starts
+2023-10-25 00:57:53,697 - INFO - {'symbol': 'BTCUSDT', 'leverage': 15, 'maxNotionalValue': '20000000'}
+2023-10-25 00:57:54,187 - INFO - set_margin_type starts
+2023-10-25 00:57:54,187 - INFO - margin_type is checked
+2023-10-25 00:57:54,715 - INFO - get_position
+2023-10-25 00:57:54,774 - INFO - None
+2023-10-25 00:57:55,379 - INFO - get_balance
+2023-10-25 00:57:55,438 - INFO - 14500
+2023-10-25 00:57:55,925 - INFO - get_minimum_order_qty
+2023-10-25 00:57:56,026 - INFO - 0.001
+2023-10-25 00:57:56,570 - INFO - needed balance
+2023-10-25 00:57:56,617 - INFO - 15565.1958
+2023-10-25 00:57:57,116 - INFO - check spread
+2023-10-25 00:57:57,164 - INFO - 1
+2023-10-25 01:20:01,791 - INFO - @@@2023-10-25 01:20:00시그널발생:{'Close': 33858.8, 'Atr': 226.179, 'Mingap': 56.545, 'Signal': 'SHORT'}@@@
+2023-10-25 01:20:01,805 - INFO - create_entry_list
+2023-10-25 01:20:01,806 - INFO - create general price
+2023-10-25 01:20:01,806 - INFO - {'Signal': 33858.8, 0: 33858.8}
+2023-10-25 01:20:01,820 - ERROR - Traceback (most recent call last):
+  File "e:\Programing\Divelopment\alrgo\trade.py", line 1253, in entry_manager
+    self.general_qty = self.general_qty_creator(signal=self.signal, qty=self.entry_list[self.division])
+                                                                        ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+

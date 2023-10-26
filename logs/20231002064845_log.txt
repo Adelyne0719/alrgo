@@ -1,0 +1,248 @@
+2023-10-02 06:48:45,614 - INFO - init_data starts
+2023-10-02 06:48:45,929 - INFO - set_leverage starts
+2023-10-02 06:48:46,202 - INFO - {'symbol': 'BTCUSDT', 'leverage': 15, 'maxNotionalValue': '20000000'}
+2023-10-02 06:48:46,392 - INFO - set_margin_type starts
+2023-10-02 06:48:46,418 - INFO - margin_type is checked
+2023-10-02 06:48:46,608 - INFO - get_position
+2023-10-02 06:48:46,668 - INFO - None
+2023-10-02 06:48:46,844 - INFO - get_balance
+2023-10-02 06:48:46,905 - INFO - 14500
+2023-10-02 06:48:47,079 - INFO - get_minimum_order_qty
+2023-10-02 06:48:47,176 - INFO - 0.001
+2023-10-02 06:48:47,376 - INFO - needed balance
+2023-10-02 06:48:47,425 - INFO - 12532.9974
+2023-10-02 06:48:47,603 - INFO - check spread
+2023-10-02 06:48:47,651 - INFO - 1
+2023-10-02 06:50:02,595 - INFO - @@@2023-10-02 06:50:01시그널발생:{'Close': 27127.8, 'Atr': 21.161, 'Mingap': 20.346, 'Signal': 'SHORT'}@@@
+2023-10-02 06:50:02,603 - INFO - create_entry_list
+2023-10-02 06:50:02,603 - INFO - {0: 0.005, 1: 0.025, 2: 0.038, 3: 0.057, 4: 0.085, 5: 0.141, 6: 0.218, 7: 0.338, 8: 0.572, 9: 0.915, 10: 1.464, 11: 2.538}
+2023-10-02 06:50:02,603 - INFO - create general price
+2023-10-02 06:50:02,604 - INFO - {'Signal': 27127.8, 0: 27127.8}
+2023-10-02 06:50:02,604 - INFO - create general qty
+2023-10-02 06:50:02,604 - INFO - {0: 0.005}
+2023-10-02 06:50:02,605 - INFO - create hedge qty
+2023-10-02 06:50:02,605 - INFO - {0: 0}
+2023-10-02 06:50:02,658 - INFO - g_prep
+2023-10-02 06:50:02,658 - INFO - [0.001, 0.001, 0.001, 0.001, 0.001]
+2023-10-02 06:50:02,836 - INFO - entry_g(0)
+2023-10-02 06:50:02,891 - INFO - time: 2023-10-02 06:50:02 symbol: BTCUSDT side: SHORT price: 27127.70000 size: 0.001 type: MARKET / entry_g status: FILLED division: 0 -0 g_count: 0
+2023-10-02 06:50:02,988 - INFO - entry_g(0)주문결과 order_price:27127.8, order_qty:0.001
+2023-10-02 06:50:03,215 - INFO - entry_g(1)
+2023-10-02 06:50:03,269 - INFO - time: 2023-10-02 06:50:02 symbol: BTCUSDT side: SHORT price: 27127.70000 size: 0.001 type: MARKET / entry_g status: FILLED division: 0 -0 g_count: 1
+2023-10-02 06:50:03,378 - INFO - entry_g(1)주문결과 order_price:27127.8, order_qty:0.001
+2023-10-02 06:50:03,615 - INFO - entry_g(2)
+2023-10-02 06:50:03,669 - INFO - time: 2023-10-02 06:50:03 symbol: BTCUSDT side: SHORT price: 27127.70000 size: 0.001 type: MARKET / entry_g status: FILLED division: 0 -0 g_count: 2
+2023-10-02 06:50:03,755 - INFO - entry_g(2)주문결과 order_price:27127.8, order_qty:0.001
+2023-10-02 06:50:03,985 - INFO - entry_g(3)
+2023-10-02 06:50:04,042 - INFO - time: 2023-10-02 06:50:03 symbol: BTCUSDT side: SHORT price: 27127.70000 size: 0.001 type: MARKET / entry_g status: FILLED division: 0 -0 g_count: 3
+2023-10-02 06:50:04,145 - INFO - entry_g(3)주문결과 order_price:27127.8, order_qty:0.001
+2023-10-02 06:50:04,376 - INFO - entry_g(4)
+2023-10-02 06:50:04,433 - INFO - time: 2023-10-02 06:50:03 symbol: BTCUSDT side: SHORT price: 27127.70000 size: 0.001 type: MARKET / entry_g status: FILLED division: 0 -0 g_count: 4
+2023-10-02 06:50:04,549 - INFO - entry_g(4)주문결과 order_price:27127.8, order_qty:0.001
+2023-10-02 06:50:04,596 - INFO - now history avg price
+2023-10-02 06:50:04,596 - INFO - {'AEP': 27127.7, 'QTY': 0.005}
+2023-10-02 06:50:04,597 - INFO - {}
+2023-10-02 06:50:04,597 - INFO - get_liquidation_percent
+2023-10-02 06:50:05,971 - INFO - 0.062022267062080375
+2023-10-02 06:50:05,994 - INFO - -----첫 gh 진입완료 dv1 추가-----
+2023-10-02 06:50:06,050 - INFO - create general qty
+2023-10-02 06:50:06,050 - INFO - {0: 0.002, 1: 0.003, 2: 0.007, 3: 0.013}
+2023-10-02 06:50:06,050 - INFO - create hedge qty
+2023-10-02 06:50:06,051 - INFO - {0: 0.006, 1: 0.006, 2: 0.006, 3: 0.007}
+2023-10-02 06:50:06,247 - INFO - pre_h_order
+2023-10-02 07:15:02,775 - INFO - short - 봉조건 불충족/last_open:27168.6 last_close:27214.2 last_open:27147.7 last_close:27168.6
+2023-10-02 07:20:01,017 - INFO - short - 봉조건 불충족/last_open:27214.2 last_close:27857.7 last_open:27168.6 last_close:27214.2
+2023-10-02 07:25:01,141 - INFO - short - 봉조건 불충족/last_open:27857.7 last_close:27899.7 last_open:27214.2 last_close:27857.6
+2023-10-02 07:30:01,379 - INFO - short - 봉조건 불충족/last_open:27920.8 last_close:27857.5 last_open:27857.7 last_close:27920.8
+2023-10-02 07:35:01,616 - INFO - short - 이전봉이 음봉/last_open:27862.2 last_close:28013.7 last_open:27920.8 last_close:27861.9
+2023-10-02 07:40:02,137 - INFO - @@@2023-10-02 07:40:01시그널발생:{'Close': 27909.3, 'Atr': 118.209, 'Mingap': 29.552, 'Signal': 'SHORT'}@@@
+2023-10-02 07:40:02,149 - INFO - create general price
+2023-10-02 07:40:02,150 - INFO - {'Signal': 27909.3, 0: 27968.4, 1: 27998.0, 2: 28027.5, 3: 28057.1}
+2023-10-02 07:52:53,461 - INFO - g_prep
+2023-10-02 07:52:53,462 - INFO - [0.001, 0.001]
+2023-10-02 07:52:53,462 - INFO - h_prep
+2023-10-02 07:52:53,462 - INFO - [0.001, 0.001, 0.001]
+2023-10-02 07:52:53,463 - INFO - orc:[True, True],price:27978.2
+2023-10-02 07:52:53,637 - INFO - entry_g(0)
+2023-10-02 07:52:53,849 - INFO - time: 2023-10-02 07:52:53 symbol: BTCUSDT side: SHORT price: 27969 size: 0.001 type: MARKET / entry_g status: FILLED division: 1 -0 g_count: 0
+2023-10-02 07:52:53,944 - INFO - entry_g(0)주문결과 order_price:27978.2, order_qty:0.001
+2023-10-02 07:52:54,120 - INFO - entry_h(0)
+2023-10-02 07:52:54,177 - INFO - time: 2023-10-02 07:52:53 symbol: BTCUSDT side: LONG price: 27964.80000 size: 0.001 type: MARKET / entry_h status: FILLED division: 1 -0 h_count: 0
+2023-10-02 07:52:54,275 - INFO - entry_h(0)주문결과 order_price:27978.2, order_qty:0.001
+2023-10-02 07:52:54,321 - INFO - orc:[True, True],price:27978.2
+2023-10-02 07:52:54,498 - INFO - entry_g(1)
+2023-10-02 07:52:54,551 - INFO - time: 2023-10-02 07:52:54 symbol: BTCUSDT side: SHORT price: 27968.20000 size: 0.001 type: MARKET / entry_g status: FILLED division: 1 -0 g_count: 1
+2023-10-02 07:52:54,650 - INFO - entry_g(1)주문결과 order_price:27978.2, order_qty:0.001
+2023-10-02 07:52:54,844 - INFO - entry_h(1)
+2023-10-02 07:52:54,897 - INFO - time: 2023-10-02 07:52:54 symbol: BTCUSDT side: LONG price: 27965.70000 size: 0.001 type: MARKET / entry_h status: FILLED division: 1 -0 h_count: 1
+2023-10-02 07:52:54,995 - INFO - entry_h(1)주문결과 order_price:27978.2, order_qty:0.001
+2023-10-02 07:52:55,055 - INFO - orc:[False, True],price:27978.2
+2023-10-02 07:52:55,252 - INFO - entry_h(2)
+2023-10-02 07:52:55,307 - INFO - time: 2023-10-02 07:52:54 symbol: BTCUSDT side: LONG price: 27965.40000 size: 0.001 type: MARKET / entry_h status: FILLED division: 1 -0 h_count: 2
+2023-10-02 07:52:55,418 - INFO - entry_h(2)주문결과 order_price:27978.2, order_qty:0.001
+2023-10-02 07:52:57,501 - INFO - slippage check
+2023-10-02 07:52:57,503 - INFO - slippage check 결과:1-0/g_diff:-0.2,g_sli변화량:0/h_diff:3.3,h_sli변화량:0/t_sli:0
+2023-10-02 07:52:57,508 - INFO - 27968.4
+2023-10-02 07:59:54,368 - INFO - g_prep
+2023-10-02 07:59:54,368 - INFO - [0.001, 0.001, 0.001]
+2023-10-02 07:59:54,369 - INFO - h_prep
+2023-10-02 07:59:54,369 - INFO - [0.001, 0.001, 0.001, 0.001, 0.002]
+2023-10-02 07:59:54,560 - INFO - entry_g(0)
+2023-10-02 07:59:54,846 - INFO - time: 2023-10-02 07:59:54 symbol: BTCUSDT side: SHORT price: 27991 size: 0.001 type: MARKET / entry_g status: FILLED division: 1 -1 g_count: 0
+2023-10-02 07:59:54,930 - INFO - entry_g(0)주문결과 order_price:27998.8, order_qty:0.001
+2023-10-02 07:59:55,113 - INFO - entry_h(0)
+2023-10-02 07:59:55,175 - INFO - time: 2023-10-02 07:59:54 symbol: BTCUSDT side: LONG price: 27987.50000 size: 0.001 type: MARKET / entry_h status: FILLED division: 1 -1 h_count: 0
+2023-10-02 07:59:55,271 - INFO - entry_h(0)주문결과 order_price:27998.8, order_qty:0.001
+2023-10-02 07:59:55,503 - INFO - entry_g(1)
+2023-10-02 07:59:55,571 - INFO - time: 2023-10-02 07:59:55 symbol: BTCUSDT side: SHORT price: 27992.90000 size: 0.001 type: MARKET / entry_g status: FILLED division: 1 -1 g_count: 1
+2023-10-02 07:59:55,678 - INFO - entry_g(1)주문결과 order_price:27998.8, order_qty:0.001
+2023-10-02 07:59:55,858 - INFO - entry_h(1)
+2023-10-02 07:59:55,913 - INFO - time: 2023-10-02 07:59:55 symbol: BTCUSDT side: LONG price: 27994.10000 size: 0.001 type: MARKET / entry_h status: FILLED division: 1 -1 h_count: 1
+2023-10-02 07:59:56,023 - INFO - entry_h(1)주문결과 order_price:27998.8, order_qty:0.001
+2023-10-02 07:59:56,254 - INFO - entry_g(2)
+2023-10-02 07:59:56,310 - INFO - time: 2023-10-02 07:59:55 symbol: BTCUSDT side: SHORT price: 27994.40000 size: 0.001 type: MARKET / entry_g status: FILLED division: 1 -1 g_count: 2
+2023-10-02 07:59:56,414 - INFO - entry_g(2)주문결과 order_price:27994.5, order_qty:0.001
+2023-10-02 07:59:56,593 - INFO - entry_h(2)
+2023-10-02 07:59:56,651 - INFO - time: 2023-10-02 07:59:56 symbol: BTCUSDT side: LONG price: 27996.90000 size: 0.001 type: MARKET / entry_h status: FILLED division: 1 -1 h_count: 2
+2023-10-02 07:59:56,748 - INFO - entry_h(2)주문결과 order_price:27994.5, order_qty:0.001
+2023-10-02 08:00:06,611 - INFO - entry_h(3)
+2023-10-02 08:00:06,663 - INFO - time: 2023-10-02 08:00:06 symbol: BTCUSDT side: LONG price: 27999 size: 0.001 type: MARKET / entry_h status: FILLED division: 1 -1 h_count: 3
+2023-10-02 08:00:06,774 - INFO - entry_h(3)주문결과 order_price:27998.9, order_qty:0.001
+2023-10-02 08:00:07,014 - INFO - entry_h(4)
+2023-10-02 08:00:07,068 - INFO - time: 2023-10-02 08:00:06 symbol: BTCUSDT side: LONG price: 27999.90000 size: 0.002 type: MARKET / entry_h status: FILLED division: 1 -1 h_count: 4
+2023-10-02 08:00:07,180 - INFO - entry_h(4)주문결과 order_price:27998.9, order_qty:0.002
+2023-10-02 08:00:07,240 - INFO - slippage check
+2023-10-02 08:00:07,240 - INFO - slippage check 결과:1-1/g_diff:5.2,g_sli변화량:5.2/h_diff:-3.4,h_sli변화량:-3.4/t_sli:1.8000000000000003
+2023-10-02 08:00:07,242 - INFO - 27999.8
+2023-10-02 09:02:29,997 - INFO - g_prep
+2023-10-02 09:02:29,997 - INFO - [0.001, 0.001, 0.001, 0.002, 0.002]
+2023-10-02 09:02:29,998 - INFO - h_prep
+2023-10-02 09:02:29,998 - INFO - [0.001, 0.001, 0.001, 0.001, 0.002]
+2023-10-02 09:02:30,187 - INFO - entry_g(0)
+2023-10-02 09:02:30,386 - INFO - time: 2023-10-02 09:02:29 symbol: BTCUSDT side: SHORT price: 28026.20000 size: 0.001 type: MARKET / entry_g status: FILLED division: 1 -2 g_count: 0
+2023-10-02 09:02:30,481 - INFO - entry_g(0)주문결과 order_price:28031.0, order_qty:0.001
+2023-10-02 09:02:30,657 - INFO - entry_h(0)
+2023-10-02 09:02:30,718 - INFO - time: 2023-10-02 09:02:30 symbol: BTCUSDT side: LONG price: 28030.50000 size: 0.001 type: MARKET / entry_h status: FILLED division: 1 -2 h_count: 0
+2023-10-02 09:02:30,812 - INFO - entry_h(0)주문결과 order_price:28031.0, order_qty:0.001
+2023-10-02 09:02:31,041 - INFO - entry_g(1)
+2023-10-02 09:02:31,098 - INFO - time: 2023-10-02 09:02:30 symbol: BTCUSDT side: SHORT price: 28027.30000 size: 0.001 type: MARKET / entry_g status: FILLED division: 1 -2 g_count: 1
+2023-10-02 09:02:31,220 - INFO - entry_g(1)주문결과 order_price:28031.0, order_qty:0.001
+2023-10-02 09:02:31,398 - INFO - entry_h(1)
+2023-10-02 09:02:31,452 - INFO - time: 2023-10-02 09:02:30 symbol: BTCUSDT side: LONG price: 28027.40000 size: 0.001 type: MARKET / entry_h status: FILLED division: 1 -2 h_count: 1
+2023-10-02 09:02:31,550 - INFO - entry_h(1)주문결과 order_price:28031.0, order_qty:0.001
+2023-10-02 09:02:31,784 - INFO - entry_g(2)
+2023-10-02 09:02:31,859 - INFO - time: 2023-10-02 09:02:31 symbol: BTCUSDT side: SHORT price: 28026 size: 0.001 type: MARKET / entry_g status: FILLED division: 1 -2 g_count: 2
+2023-10-02 09:02:31,957 - INFO - entry_g(2)주문결과 order_price:28031.0, order_qty:0.001
+2023-10-02 09:02:32,144 - INFO - entry_h(2)
+2023-10-02 09:02:32,200 - INFO - time: 2023-10-02 09:02:31 symbol: BTCUSDT side: LONG price: 28020.30000 size: 0.001 type: MARKET / entry_h status: FILLED division: 1 -2 h_count: 2
+2023-10-02 09:02:32,293 - INFO - entry_h(2)주문결과 order_price:28023.6, order_qty:0.001
+2023-10-02 09:02:34,163 - INFO - entry_g(3)
+2023-10-02 09:02:34,219 - INFO - time: 2023-10-02 09:02:33 symbol: BTCUSDT side: SHORT price: 28028.20000 size: 0.002 type: MARKET / entry_g status: FILLED division: 1 -2 g_count: 3
+2023-10-02 09:02:34,323 - INFO - entry_g(3)주문결과 order_price:28028.3, order_qty:0.002
+2023-10-02 09:02:34,495 - INFO - entry_h(3)
+2023-10-02 09:02:34,551 - INFO - time: 2023-10-02 09:02:34 symbol: BTCUSDT side: LONG price: 28029.30000 size: 0.001 type: MARKET / entry_h status: FILLED division: 1 -2 h_count: 3
+2023-10-02 09:02:34,641 - INFO - entry_h(3)주문결과 order_price:28028.3, order_qty:0.001
+2023-10-02 09:02:34,882 - INFO - entry_g(4)
+2023-10-02 09:02:34,935 - INFO - time: 2023-10-02 09:02:34 symbol: BTCUSDT side: SHORT price: 28031.40000 size: 0.002 type: MARKET / entry_g status: FILLED division: 1 -2 g_count: 4
+2023-10-02 09:02:35,030 - INFO - entry_g(4)주문결과 order_price:28028.3, order_qty:0.002
+2023-10-02 09:02:35,219 - INFO - entry_h(4)
+2023-10-02 09:02:35,275 - INFO - time: 2023-10-02 09:02:34 symbol: BTCUSDT side: LONG price: 28031.50000 size: 0.002 type: MARKET / entry_h status: FILLED division: 1 -2 h_count: 4
+2023-10-02 09:02:35,375 - INFO - entry_h(4)주문결과 order_price:28028.3, order_qty:0.002
+2023-10-02 09:02:35,435 - INFO - slippage check
+2023-10-02 09:02:35,435 - INFO - slippage check 결과:1-2/g_diff:-0.9,g_sli변화량:0.0/h_diff:0.0,h_sli변화량:0.0/t_sli:1.8000000000000003
+2023-10-02 09:02:35,436 - INFO - 28029.3
+2023-10-02 12:44:43,020 - INFO - g_prep
+2023-10-02 12:44:43,020 - INFO - [0.002, 0.002, 0.003, 0.003, 0.003]
+2023-10-02 12:44:43,021 - INFO - h_prep
+2023-10-02 12:44:43,021 - INFO - [0.001, 0.001, 0.001, 0.002, 0.002]
+2023-10-02 12:44:43,225 - INFO - entry_g(0)
+2023-10-02 12:44:43,897 - INFO - time: 2023-10-02 12:44:43 symbol: BTCUSDT side: SHORT price: 28099.90000 size: 0.002 type: MARKET / entry_g status: FILLED division: 1 -3 g_count: 0
+2023-10-02 12:44:43,952 - INFO - entry_g(0)주문결과 order_price:28074.8, order_qty:0.002
+2023-10-02 12:44:44,128 - INFO - entry_h(0)
+2023-10-02 12:44:46,527 - INFO - time: 2023-10-02 12:44:45 symbol: BTCUSDT side: LONG price: 28230 size: 0.001 type: MARKET / entry_h status: FILLED division: 1 -3 h_count: 0
+2023-10-02 12:44:46,537 - INFO - entry_h(0)주문결과 order_price:28156.6, order_qty:0.001
+2023-10-02 12:44:46,789 - INFO - entry_g(1)
+2023-10-02 12:44:47,469 - INFO - time: 2023-10-02 12:44:46 symbol: BTCUSDT side: SHORT price: 28223.30000 size: 0.002 type: MARKET / entry_g status: FILLED division: 1 -3 g_count: 1
+2023-10-02 12:44:47,548 - INFO - entry_g(1)주문결과 order_price:28156.6, order_qty:0.002
+2023-10-02 12:44:47,730 - INFO - entry_h(1)
+2023-10-02 12:44:48,343 - INFO - time: 2023-10-02 12:44:47 symbol: BTCUSDT side: LONG price: 28194.90000 size: 0.001 type: MARKET / entry_h status: FILLED division: 1 -3 h_count: 1
+2023-10-02 12:44:48,420 - INFO - entry_h(1)주문결과 order_price:28156.6, order_qty:0.001
+2023-10-02 12:44:48,636 - INFO - entry_g(2)
+2023-10-02 12:44:49,156 - INFO - time: 2023-10-02 12:44:48 symbol: BTCUSDT side: SHORT price: 28166.70000 size: 0.003 type: MARKET / entry_g status: FILLED division: 1 -3 g_count: 2
+2023-10-02 12:44:49,233 - INFO - entry_g(2)주문결과 order_price:28183.5, order_qty:0.003
+2023-10-02 12:44:49,416 - INFO - entry_h(2)
+2023-10-02 12:44:49,827 - INFO - time: 2023-10-02 12:44:49 symbol: BTCUSDT side: LONG price: 28131.30000 size: 0.001 type: MARKET / entry_h status: FILLED division: 1 -3 h_count: 2
+2023-10-02 12:44:49,909 - INFO - entry_h(2)주문결과 order_price:28183.5, order_qty:0.001
+2023-10-02 12:44:50,155 - INFO - entry_g(3)
+2023-10-02 12:44:50,462 - INFO - time: 2023-10-02 12:44:49 symbol: BTCUSDT side: SHORT price: 28126 size: 0.003 type: MARKET / entry_g status: FILLED division: 1 -3 g_count: 3
+2023-10-02 12:44:50,543 - INFO - entry_g(3)주문결과 order_price:28183.5, order_qty:0.003
+2023-10-02 12:44:50,714 - INFO - entry_h(3)
+2023-10-02 12:44:50,942 - INFO - time: 2023-10-02 12:44:50 symbol: BTCUSDT side: LONG price: 28142.50000 size: 0.002 type: MARKET / entry_h status: FILLED division: 1 -3 h_count: 3
+2023-10-02 12:44:51,038 - INFO - entry_h(3)주문결과 order_price:28142.5, order_qty:0.002
+2023-10-02 12:44:51,279 - INFO - entry_g(4)
+2023-10-02 12:44:51,497 - INFO - time: 2023-10-02 12:44:50 symbol: BTCUSDT side: SHORT price: 28135.50000 size: 0.003 type: MARKET / entry_g status: FILLED division: 1 -3 g_count: 4
+2023-10-02 12:44:51,593 - INFO - entry_g(4)주문결과 order_price:28142.5, order_qty:0.003
+2023-10-02 12:44:51,770 - INFO - entry_h(4)
+2023-10-02 12:44:51,995 - INFO - time: 2023-10-02 12:44:51 symbol: BTCUSDT side: LONG price: 28115.70000 size: 0.002 type: MARKET / entry_h status: FILLED division: 1 -3 h_count: 4
+2023-10-02 12:44:52,089 - INFO - entry_h(4)주문결과 order_price:28142.5, order_qty:0.002
+2023-10-02 12:44:52,149 - INFO - slippage check
+2023-10-02 12:44:52,149 - INFO - slippage check 결과:1-3/g_diff:-91.4,g_sli변화량:0.0/h_diff:-4.7,h_sli변화량:-4.699999999999999/t_sli:-2.8999999999999995
+2023-10-02 12:44:52,150 - INFO - 28054.199999999997
+2023-10-02 12:44:52,201 - INFO - now history avg price
+2023-10-02 12:44:52,220 - ERROR - Traceback (most recent call last):
+  File "e:\Programing\Divelopment\alrgo\trade.py", line 1149, in position_update
+    self.g_position['QTY'] = self.g_history['qty'] + self.g_history['qty']
+KeyError: 'qty'
+
+2023-10-02 12:44:52,285 - INFO - create general qty
+2023-10-02 12:44:52,285 - INFO - {0: 0.004, 1: 0.006, 2: 0.012, 3: 0.022}
+2023-10-02 12:44:52,285 - INFO - create hedge qty
+2023-10-02 12:44:52,286 - INFO - {0: 0.01, 1: 0.011, 2: 0.011, 3: 0.011}
+2023-10-02 12:44:52,461 - INFO - pre_h_order
+2023-10-02 12:45:01,152 - INFO - short - 이전봉이 음봉/last_open:27973.6 last_close:28087.5 last_open:27991.9 last_close:27973.5
+2023-10-02 12:55:01,941 - INFO - short - 이전봉이 음봉/last_open:28031.2 last_close:28057.3 last_open:28089.5 last_close:28031.2
+2023-10-02 13:00:01,200 - INFO - short - 봉조건 불충족/last_open:28057.4 last_close:28120.0 last_open:28031.2 last_close:28057.3
+2023-10-02 13:05:02,312 - INFO - short - 봉조건 불충족/last_open:28116.7 last_close:28116.6 last_open:28114.9 last_close:28116.6
+2023-10-02 13:10:01,534 - INFO - short - 봉조건 불충족/last_open:28116.7 last_close:28054.3 last_open:28114.9 last_close:28116.6
+2023-10-02 13:15:02,880 - INFO - short - 이전봉이 음봉/last_open:28052.4 last_close:28052.5 last_open:28054.2 last_close:28052.5
+2023-10-02 13:20:02,406 - INFO - short - 이전봉이 음봉/last_open:28046.3 last_close:28046.4 last_open:28052.4 last_close:28046.4
+2023-10-02 13:25:01,839 - INFO - short - 이전봉이 음봉/last_open:28046.3 last_close:28043.2 last_open:28052.4 last_close:28046.4
+2023-10-02 13:30:02,308 - INFO - short - 이전봉이 음봉/last_open:28024.8 last_close:28024.9 last_open:28043.3 last_close:28024.8
+2023-10-02 13:35:01,773 - INFO - short - 봉조건 불충족/last_open:28033.7 last_close:28033.8 last_open:28024.8 last_close:28033.7
+2023-10-02 13:40:01,348 - INFO - short - 봉조건 불충족/last_open:28033.7 last_close:28035.0 last_open:28024.8 last_close:28033.7
+2023-10-02 13:45:02,848 - INFO - short - 이전봉이 음봉/last_open:28032.2 last_close:28032.2 last_open:28035.0 last_close:28032.3
+2023-10-02 13:50:02,519 - INFO - short - 이전봉이 음봉/last_open:28026.2 last_close:28026.2 last_open:28032.2 last_close:28026.2
+2023-10-02 13:55:02,173 - INFO - short - 이전봉이 음봉/last_open:28026.2 last_close:28059.0 last_open:28032.2 last_close:28026.2
+2023-10-02 14:05:01,226 - INFO - short - 이전봉이 음봉/last_open:28054.0 last_close:28053.5 last_open:28059.1 last_close:28054.0
+2023-10-02 14:10:01,022 - INFO - short - 이전봉이 음봉/last_open:28053.5 last_close:28038.6 last_open:28054.0 last_close:28053.4
+2023-10-02 14:15:02,903 - INFO - short - 봉조건 불충족/last_open:28038.3 last_close:28038.3 last_open:28037.1 last_close:28038.3
+2023-10-02 14:20:02,636 - INFO - short - 봉조건 불충족/last_open:28055.3 last_close:28055.3 last_open:28038.3 last_close:28055.3
+2023-10-02 14:25:02,066 - INFO - short - 봉조건 불충족/last_open:28055.3 last_close:28081.6 last_open:28038.3 last_close:28055.3
+2023-10-02 14:30:01,841 - INFO - short - 봉조건 불충족/last_open:28080.3 last_close:28082.8 last_open:28055.3 last_close:28080.3
+2023-10-02 14:35:03,353 - INFO - short - 이전봉이 음봉/last_open:28024.7 last_close:28024.7 last_open:28082.9 last_close:28024.7
+2023-10-02 14:40:01,199 - INFO - short - 이전봉이 음봉/last_open:28024.7 last_close:28015.9 last_open:28082.9 last_close:28024.7
+2023-10-02 14:45:02,404 - INFO - short - 이전봉이 음봉/last_open:27964.1 last_close:27966.2 last_open:28016.8 last_close:27964.0
+2023-10-02 14:50:01,832 - INFO - short - 이전봉이 음봉/last_open:27964.1 last_close:27951.1 last_open:28016.8 last_close:27964.0
+2023-10-02 14:55:03,133 - INFO - short - 봉조건 불충족/last_open:27955.6 last_close:27955.6 last_open:27951.1 last_close:27955.5
+2023-10-02 15:00:01,159 - INFO - short - 봉조건 불충족/last_open:27955.6 last_close:27965.6 last_open:27951.1 last_close:27955.5
+2023-10-02 15:05:02,118 - INFO - short - 봉조건 불충족/last_open:27966.0 last_close:27974.1 last_open:27955.6 last_close:27966.0
+2023-10-02 15:10:01,560 - INFO - short - 봉조건 불충족/last_open:27974.6 last_close:27952.2 last_open:27966.0 last_close:27974.5
+2023-10-02 15:15:03,413 - INFO - short - 봉조건 불충족/last_open:27969.4 last_close:27969.4 last_open:27952.0 last_close:27969.4
+2023-10-02 15:25:02,880 - INFO - short - 봉조건 불충족/last_open:28022.1 last_close:28023.6 last_open:27964.3 last_close:28022.0
+2023-10-02 15:30:02,057 - INFO - short - 봉조건 불충족/last_open:28022.1 last_close:28034.2 last_open:27964.3 last_close:28022.0
+2023-10-02 15:35:03,441 - INFO - short - 봉조건 불충족/last_open:28034.2 last_close:28040.1 last_open:28022.1 last_close:28034.2
+2023-10-02 15:45:02,772 - INFO - short - 이전봉이 음봉/last_open:28063.7 last_close:28063.7 last_open:28065.1 last_close:28063.7
+2023-10-02 15:50:02,367 - INFO - short - 이전봉이 음봉/last_open:28054.9 last_close:28054.9 last_open:28063.7 last_close:28055.0
+2023-10-02 15:55:02,050 - INFO - short - 이전봉이 음봉/last_open:28054.9 last_close:28072.8 last_open:28063.7 last_close:28055.0
+2023-10-02 16:00:02,055 - INFO - short - 봉조건 불충족/last_open:28080.3 last_close:28086.5 last_open:28054.9 last_close:28080.3
+2023-10-02 16:05:01,248 - INFO - short - 봉조건 불충족/last_open:28086.5 last_close:28107.4 last_open:28080.3 last_close:28086.6
+2023-10-02 16:20:02,478 - INFO - short - 봉조건 불충족/last_open:28092.3 last_close:28133.8 last_open:28090.8 last_close:28092.4
+2023-10-02 16:25:01,962 - INFO - short - 봉조건 불충족/last_open:28133.9 last_close:28170.3 last_open:28092.3 last_close:28133.8
+2023-10-02 16:30:01,394 - INFO - short - 봉조건 불충족/last_open:28166.7 last_close:28182.8 last_open:28133.9 last_close:28166.7
+2023-10-02 16:35:02,783 - INFO - short - 봉조건 불충족/last_open:28220.9 last_close:28220.8 last_open:28179.1 last_close:28220.8
+2023-10-02 16:40:01,942 - INFO - short - 봉조건 불충족/last_open:28220.9 last_close:28287.7 last_open:28179.1 last_close:28220.8
+2023-10-02 16:45:02,837 - INFO - short - 봉조건 불충족/last_open:28296.8 last_close:28296.8 last_open:28291.6 last_close:28296.8
+2023-10-02 16:50:01,654 - INFO - short - 봉조건 불충족/last_open:28296.8 last_close:28353.1 last_open:28291.6 last_close:28296.8
+2023-10-02 16:55:02,852 - INFO - short - 이전봉이 음봉/last_open:28269.3 last_close:28272.9 last_open:28351.9 last_close:28269.4
+2023-10-02 17:00:02,264 - INFO - short - 이전봉이 음봉/last_open:28269.3 last_close:28300.0 last_open:28351.9 last_close:28269.4
+2023-10-02 17:05:02,656 - INFO - short - 이전봉이 음봉/last_open:28266.5 last_close:28266.4 last_open:28299.2 last_close:28266.4
